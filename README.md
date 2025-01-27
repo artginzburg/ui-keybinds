@@ -20,7 +20,7 @@ There are currently the following keybinds:
 - **__Server Selection Screen__**
   - `M` to join the first server in the server list
   - `A` to add new server
-  - `D` to open the direct connect screen
+  - `D` to open the direct connect screen (not implemented yet)
   - `1-9` to join the corresponding server in the server list
 - **__Server Disconnect Screen__**
   - `ESC` to return to Server Selection Screen
@@ -32,14 +32,16 @@ Im open to suggestions for more keybinds! You can join [my discord]([https://dis
 
 ## Why can't I rebind these keys in controls?
 
-This mod does not use the minecraft keybinding system to prevent conflicts (ex. `S` to open world selection screen would block movement backwards)
+This mod does not use the minecraft keybinding system, so as to prevent conflicts (ex. `S` to open world selection screen would block movement backwards).
+
+You can code a ModMenu integration for user config — I'll accept PRs for that as soon as possible.
 
 ## Contributing
 
-If you found bug or something doesn't work, please open an issue [here](https://github.com/LukynkaCZE/better-ui-keybinds/issues)
+If you found a bug or something doesn't work — please open an issue [here](https://github.com/LukynkaCZE/better-ui-keybinds/issues)
 
 If you are developer and want to contribute, check out the [source code](https://github.com/LukynkaCZE/better-ui-keybinds/issues). Feel free to open pull requests!
 
 ## Support
 
-If you like the mod, consider supporting me by [buying me a cofee](https://ko-fi.com/lukynkacze)
+If you like the mod, consider supporting me by [buying me a cofee](https://ko-fi.com/lukynkacze). You can also remind the author to move away from ko-fi, to avoid paying 5% in fees.
