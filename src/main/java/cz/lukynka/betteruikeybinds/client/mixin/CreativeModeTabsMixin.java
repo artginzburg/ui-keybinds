@@ -15,7 +15,7 @@ public class CreativeModeTabsMixin {
 
     @Inject(at = @At("HEAD"), method = "getDefaultTab", cancellable = true)
     private static void getDefaultTab(CallbackInfoReturnable<CreativeModeTab> cir) {
-        cir.setReturnValue(BuiltInRegistries.CREATIVE_MODE_TAB.getOrThrow(SEARCH));
+        cir.setReturnValue(BuiltInRegistries.CREATIVE_MODE_TAB.getOrThrow(SEARCH).value());
     }
 
 }
