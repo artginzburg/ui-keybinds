@@ -22,7 +22,8 @@ public class BetterUIKeybinds implements ModInitializer {
             new MultiplayerAddServer(), // Server List -> Jumps to Add new server screen with "A"
             new SelectWorldScreenEnterWorld(), // World Select -> Joins the selected world with "Enter" even when the selection is on SearchBox
             new GameMenuScreenEscape(), // Pause Menu -> Selects the disconnect button with "E" (as Exit)
-            new CreativeInventorySearch() // Creative Inventory Menu -> Selects the search tab with "TAB". If search tab is already selected, clears the search box value
+            new CreativeInventorySearch(), // Creative Inventory Menu -> Selects the search tab with "TAB". If search tab is already selected, clears the search box value
+            new MultiplayerRefreshList() // Server List -> Refreshes the server list with "R"
     );
 
     private final Set<Integer> pressedKeys = new HashSet<>();
