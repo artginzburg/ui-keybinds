@@ -1,4 +1,4 @@
-package cz.lukynka.uikeybinds.client.mixin;
+package art.ginzburg.uikeybinds.client.mixin;
 
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;

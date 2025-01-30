@@ -1,4 +1,4 @@
-package cz.lukynka.uikeybinds.client;
+package art.ginzburg.uikeybinds.client;
 
 import net.fabricmc.api.ClientModInitializer;
 

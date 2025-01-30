@@ -1,10 +1,11 @@
-package cz.lukynka.uikeybinds.client.keybinds;
+package art.ginzburg.uikeybinds.client.keybinds;
 
-import cz.lukynka.uikeybinds.client.mixin.CreativeModeInventoryAccessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.lwjgl.glfw.GLFW;
+
+import art.ginzburg.uikeybinds.client.mixin.CreativeModeInventoryAccessor;
 
 import java.util.List;
 

@@ -1,45 +1,46 @@
-package cz.lukynka.uikeybinds.client.keybinds;
+package art.ginzburg.uikeybinds.client.keybinds;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.events.GuiEventListener;
-import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
+import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
 
-public class MultiplayerAddServer implements Keybind {
+public class SingleplayerJump implements Keybind {
+
   @Override
   public String getActionName() {
-    return "Add new Server";
+    return "Jump to Singleplayer Screen";
   }
 
   @Override
   public List<Integer> getKeybinds() {
-    return List.of(GLFW.GLFW_KEY_A);
+    return List.of(GLFW.GLFW_KEY_S);
   }
 
   @Override
   public Class<?> getScreen() {
-    return JoinMultiplayerScreen.class;
+    return TitleScreen.class;
   }
 
   @Override
   public int getRequiredPresses() {
-    return 0;
+    return 1;
   }
 
   @Override
   public void handle(Integer key) {
-    var screen = (JoinMultiplayerScreen) Minecraft.getInstance().screen;
+    var screen = (TitleScreen) Minecraft.getInstance().screen;
     assert screen != null;
     for (GuiEventListener child : screen.children()) {
-      if (child.getClass() == Button.class) {
-        var button = (Button) child;
-        if (button.getMessage().contains(Component.translatable("selectServer.add"))) {
-          button.onPress();
-        }
+      if (child.getClass() != Button.class)
+        return;
+      var button = (Button) child;
+      if (button.getMessage().contains(Component.translatable("menu.singleplayer"))) {
+        button.onPress();
       }
     }
   }

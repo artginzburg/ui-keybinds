@@ -1,43 +1,43 @@
-package cz.lukynka.uikeybinds.client.keybinds;
+package art.ginzburg.uikeybinds.client.keybinds;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.events.GuiEventListener;
-import net.minecraft.client.gui.screens.DisconnectedScreen;
+import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
 
-public class MultiplayerDisconnectScreenBack implements Keybind {
+public class MultiplayerAddServer implements Keybind {
   @Override
   public String getActionName() {
-    return "Return to Server List";
+    return "Add new Server";
   }
 
   @Override
   public List<Integer> getKeybinds() {
-    return List.of(GLFW.GLFW_KEY_ESCAPE);
+    return List.of(GLFW.GLFW_KEY_A);
   }
 
   @Override
   public Class<?> getScreen() {
-    return DisconnectedScreen.class;
+    return JoinMultiplayerScreen.class;
   }
 
   @Override
   public int getRequiredPresses() {
-    return 1;
+    return 0;
   }
 
   @Override
   public void handle(Integer key) {
-    var screen = (DisconnectedScreen) Minecraft.getInstance().screen;
+    var screen = (JoinMultiplayerScreen) Minecraft.getInstance().screen;
     assert screen != null;
     for (GuiEventListener child : screen.children()) {
       if (child.getClass() == Button.class) {
         var button = (Button) child;
-        if (button.getMessage().contains(Component.translatable("gui.toMenu"))) {
+        if (button.getMessage().contains(Component.translatable("selectServer.add"))) {
           button.onPress();
         }
       }

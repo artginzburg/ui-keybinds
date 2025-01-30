@@ -1,7 +1,8 @@
-package cz.lukynka.uikeybinds;
+package art.ginzburg.uikeybinds;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import cz.lukynka.uikeybinds.client.keybinds.*;
+
+import art.ginzburg.uikeybinds.client.keybinds.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;

@@ -1,4 +1,4 @@
-package cz.lukynka.uikeybinds.client.keybinds;
+package art.ginzburg.uikeybinds.client.keybinds;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.events.GuiEventListener;

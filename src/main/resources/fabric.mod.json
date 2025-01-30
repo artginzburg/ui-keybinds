@@ -12,8 +12,8 @@
   "icon": "assets/uikeybinds/icon.png",
   "environment": "client",
   "entrypoints": {
-    "client": ["cz.lukynka.uikeybinds.client.UIKeybindsClient"],
-    "main": ["cz.lukynka.uikeybinds.UIKeybinds"]
+    "client": ["art.ginzburg.uikeybinds.client.UIKeybindsClient"],
+    "main": ["art.ginzburg.uikeybinds.UIKeybinds"]
   },
   "mixins": ["uikeybinds.mixins.json"],
   "depends": {

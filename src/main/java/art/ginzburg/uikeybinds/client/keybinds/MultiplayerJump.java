@@ -1,4 +1,4 @@
-package cz.lukynka.uikeybinds.client.keybinds;
+package art.ginzburg.uikeybinds.client.keybinds;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
@@ -9,16 +9,16 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
 
-public class SingleplayerJump implements Keybind {
+public class MultiplayerJump implements Keybind {
 
   @Override
   public String getActionName() {
-    return "Jump to Singleplayer Screen";
+    return "Jump to Multiplayer Screen";
   }
 
   @Override
   public List<Integer> getKeybinds() {
-    return List.of(GLFW.GLFW_KEY_S);
+    return List.of(GLFW.GLFW_KEY_M);
   }
 
   @Override
@@ -39,7 +39,7 @@ public class SingleplayerJump implements Keybind {
       if (child.getClass() != Button.class)
         return;
       var button = (Button) child;
-      if (button.getMessage().contains(Component.translatable("menu.singleplayer"))) {
+      if (button.getMessage().contains(Component.translatable("menu.multiplayer"))) {
         button.onPress();
       }
     }

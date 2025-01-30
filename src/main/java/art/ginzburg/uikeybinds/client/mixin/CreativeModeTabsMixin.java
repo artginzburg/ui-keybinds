@@ -1,4 +1,4 @@
-package cz.lukynka.uikeybinds.client.mixin;
+package art.ginzburg.uikeybinds.client.mixin;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.CreativeModeTab;

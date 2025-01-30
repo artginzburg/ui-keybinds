@@ -1,4 +1,4 @@
-package cz.lukynka.uikeybinds.client.keybinds;
+package art.ginzburg.uikeybinds.client.keybinds;
 
 import java.util.List;
 
