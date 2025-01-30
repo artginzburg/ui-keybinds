@@ -6,7 +6,9 @@
   "description": "",
   "authors": [],
   "contact": {
-    "repo": "https://github.com/LukynkaCZE/UIKeybinds"
+    "homepage": "https://modrinth.com/mod/ui-keybinds",
+    "sources": "https://github.com/artginzburg/ui-keybinds",
+    "issues": "https://github.com/artginzburg/ui-keybinds/issues"
   },
   "license": "MIT",
   "icon": "assets/uikeybinds/icon.png",
