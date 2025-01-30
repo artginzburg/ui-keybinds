@@ -1,4 +1,4 @@
-package cz.lukynka.betteruikeybinds.client.keybinds;
+package cz.lukynka.uikeybinds.client.keybinds;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
@@ -10,37 +10,37 @@ import org.lwjgl.glfw.GLFW;
 import java.util.List;
 
 public class MultiplayerAddServer implements Keybind {
-    @Override
-    public String getActionName() {
-        return "Add new Server";
-    }
+  @Override
+  public String getActionName() {
+    return "Add new Server";
+  }
 
-    @Override
-    public List<Integer> getKeybinds() {
-        return List.of(GLFW.GLFW_KEY_A);
-    }
+  @Override
+  public List<Integer> getKeybinds() {
+    return List.of(GLFW.GLFW_KEY_A);
+  }
 
-    @Override
-    public Class<?> getScreen() {
-        return JoinMultiplayerScreen.class;
-    }
+  @Override
+  public Class<?> getScreen() {
+    return JoinMultiplayerScreen.class;
+  }
 
-    @Override
-    public int getRequiredPresses() {
-        return 0;
-    }
+  @Override
+  public int getRequiredPresses() {
+    return 0;
+  }
 
-    @Override
-    public void handle(Integer key) {
-        var screen = (JoinMultiplayerScreen) Minecraft.getInstance().screen;
-        assert screen != null;
-        for (GuiEventListener child : screen.children()) {
-            if(child.getClass() == Button.class) {
-                var button = (Button)child;
-                if(button.getMessage().contains(Component.translatable("selectServer.add"))) {
-                    button.onPress();
-                }
-            }
+  @Override
+  public void handle(Integer key) {
+    var screen = (JoinMultiplayerScreen) Minecraft.getInstance().screen;
+    assert screen != null;
+    for (GuiEventListener child : screen.children()) {
+      if (child.getClass() == Button.class) {
+        var button = (Button) child;
+        if (button.getMessage().contains(Component.translatable("selectServer.add"))) {
+          button.onPress();
         }
+      }
     }
+  }
 }

@@ -1,27 +1,21 @@
 {
   "schemaVersion": 1,
-  "id": "betteruikeybinds",
+  "id": "uikeybinds",
   "version": "${version}",
-  "name": "BetterUIKeybinds",
+  "name": "UIKeybinds",
   "description": "",
   "authors": [],
   "contact": {
-    "repo": "https://github.com/LukynkaCZE/BetterUIKeybinds"
+    "repo": "https://github.com/LukynkaCZE/UIKeybinds"
   },
   "license": "MIT",
-  "icon": "assets/betteruikeybinds/icon.png",
+  "icon": "assets/uikeybinds/icon.png",
   "environment": "client",
   "entrypoints": {
-    "client": [
-      "cz.lukynka.betteruikeybinds.client.BetterUIKeybindsClient"
-    ],
-    "main": [
-      "cz.lukynka.betteruikeybinds.BetterUIKeybinds"
-    ]
+    "client": ["cz.lukynka.uikeybinds.client.UIKeybindsClient"],
+    "main": ["cz.lukynka.uikeybinds.UIKeybinds"]
   },
-  "mixins": [
-    "betteruikeybinds.mixins.json"
-  ],
+  "mixins": ["uikeybinds.mixins.json"],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",

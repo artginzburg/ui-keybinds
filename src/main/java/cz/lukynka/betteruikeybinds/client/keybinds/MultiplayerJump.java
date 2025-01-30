@@ -1,4 +1,4 @@
-package cz.lukynka.betteruikeybinds.client.keybinds;
+package cz.lukynka.uikeybinds.client.keybinds;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
@@ -11,36 +11,37 @@ import java.util.List;
 
 public class MultiplayerJump implements Keybind {
 
-    @Override
-    public String getActionName() {
-        return "Jump to Multiplayer Screen";
-    }
+  @Override
+  public String getActionName() {
+    return "Jump to Multiplayer Screen";
+  }
 
-    @Override
-    public List<Integer> getKeybinds() {
-        return List.of(GLFW.GLFW_KEY_M);
-    }
+  @Override
+  public List<Integer> getKeybinds() {
+    return List.of(GLFW.GLFW_KEY_M);
+  }
 
-    @Override
-    public Class<?> getScreen() {
-        return TitleScreen.class;
-    }
+  @Override
+  public Class<?> getScreen() {
+    return TitleScreen.class;
+  }
 
-    @Override
-    public int getRequiredPresses() {
-        return 1;
-    }
+  @Override
+  public int getRequiredPresses() {
+    return 1;
+  }
 
-    @Override
-    public void handle(Integer key) {
-        var screen = (TitleScreen) Minecraft.getInstance().screen;
-        assert screen != null;
-        for (GuiEventListener child : screen.children()) {
-            if(child.getClass() != Button.class) return;
-            var button = (Button) child;
-            if(button.getMessage().contains(Component.translatable("menu.multiplayer"))) {
-                button.onPress();
-            }
-        }
+  @Override
+  public void handle(Integer key) {
+    var screen = (TitleScreen) Minecraft.getInstance().screen;
+    assert screen != null;
+    for (GuiEventListener child : screen.children()) {
+      if (child.getClass() != Button.class)
+        return;
+      var button = (Button) child;
+      if (button.getMessage().contains(Component.translatable("menu.multiplayer"))) {
+        button.onPress();
+      }
     }
+  }
 }

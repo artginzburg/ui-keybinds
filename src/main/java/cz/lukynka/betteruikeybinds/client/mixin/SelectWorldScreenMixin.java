@@ -1,4 +1,4 @@
-package cz.lukynka.betteruikeybinds.client.mixin;
+package cz.lukynka.uikeybinds.client.mixin;
 
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
@@ -12,21 +12,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(SelectWorldScreen.class)
 public class SelectWorldScreenMixin {
 
-    @Shadow protected EditBox searchBox;
+  @Shadow
+  protected EditBox searchBox;
 
-    @Shadow private WorldSelectionList list;
+  @Shadow
+  private WorldSelectionList list;
 
-    @Inject(at = @At("TAIL"), method = "init")
-    private void init(CallbackInfo ci) {
-        this.searchBox.setResponder((string) -> {
-            this.list.updateFilter(string);
-            try {
-                var firstChildren = this.list.children().getFirst();
-                list.setSelected(firstChildren);
-            } catch (Exception ex) {
-                //ignore
-            }
-        });
-    }
+  @Inject(at = @At("TAIL"), method = "init")
+  private void init(CallbackInfo ci) {
+    this.searchBox.setResponder((string) -> {
+      this.list.updateFilter(string);
+      try {
+        var firstChildren = this.list.children().getFirst();
+        list.setSelected(firstChildren);
+      } catch (Exception ex) {
+        // ignore
+      }
+    });
+  }
 
 }

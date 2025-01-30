@@ -1,4 +1,4 @@
-package cz.lukynka.betteruikeybinds.client.keybinds;
+package cz.lukynka.uikeybinds.client.keybinds;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;

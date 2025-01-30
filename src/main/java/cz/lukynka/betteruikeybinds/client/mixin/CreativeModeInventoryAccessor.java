@@ -1,4 +1,4 @@
-package cz.lukynka.betteruikeybinds.client.mixin;
+package cz.lukynka.uikeybinds.client.mixin;
 
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
@@ -10,15 +10,15 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(CreativeModeInventoryScreen.class)
 public interface CreativeModeInventoryAccessor {
 
-    @Accessor("selectedTab")
-    CreativeModeTab getSelectedTab();
+  @Accessor("selectedTab")
+  CreativeModeTab getSelectedTab();
 
-    @Accessor("searchBox")
-    EditBox getSearchBox();
+  @Accessor("searchBox")
+  EditBox getSearchBox();
 
-    @Invoker
-    void callSelectTab(CreativeModeTab creativeModeTab);
+  @Invoker
+  void callSelectTab(CreativeModeTab creativeModeTab);
 
-    @Invoker
-    void callRefreshSearchResults();
+  @Invoker
+  void callRefreshSearchResults();
 }

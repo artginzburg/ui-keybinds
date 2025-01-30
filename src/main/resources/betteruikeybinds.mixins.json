@@ -1,15 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "cz.lukynka.betteruikeybinds.client.mixin",
+  "package": "cz.lukynka.uikeybinds.client.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "CreativeModeTabsMixin"
-  ],
-  "client": [
-    "CreativeModeInventoryAccessor",
-    "SelectWorldScreenMixin"
-  ],
+  "mixins": ["CreativeModeTabsMixin"],
+  "client": ["CreativeModeInventoryAccessor", "SelectWorldScreenMixin"],
   "injectors": {
     "defaultRequire": 1
   }
