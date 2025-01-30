@@ -42,3 +42,5 @@ You can code a ModMenu integration for user config — I'll accept PRs for that 
 If you are a developer wanting to contribute, or you've found a bug — please open an issue [here](https://github.com/artginzburg/ui-keybinds/issues)
 
 Feel free to open Pull Requests!
+
+> This is an updated fork of https://modrinth.com/mod/better-ui-keybinds
