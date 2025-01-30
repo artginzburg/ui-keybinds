@@ -1,10 +1,11 @@
 # UI Keybinds
 
-UI Keybinds is a mod that adds new keybinds to navigate the Minecraft UI
+The killer feature is the ability to use the UI with keyboard only, with no pain.
 
-![gif_buik_mm](https://github.com/LukynkaCZE/better-saved-hotbars/assets/48604271/d0863984-dfae-414c-a6be-f86d55908aaa)
+E.g. `MM` on Title Screen joins the first server in your multiplayer list.
 
-![gif_buik_ss](https://github.com/LukynkaCZE/better-saved-hotbars/assets/48604271/2b521695-7537-4b58-91ad-9df3ea1d1780)
+<img src="https://github.com/LukynkaCZE/better-saved-hotbars/assets/48604271/d0863984-dfae-414c-a6be-f86d55908aaa" width="49%" />
+<img src="https://github.com/LukynkaCZE/better-saved-hotbars/assets/48604271/2b521695-7537-4b58-91ad-9df3ea1d1780" width="49%" />
 
 ## Keybinds
 
