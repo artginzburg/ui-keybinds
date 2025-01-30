@@ -10,25 +10,25 @@ UI Keybinds is a mod that adds new keybinds to navigate the Minecraft UI
 
 There are currently the following keybinds:
 
-- \***\*Main Menu\*\***
+- **Main Menu**
   - `S` to open the World Selection Screen
   - `M` to open the Server Selection Screen
   - `MM` to join the first server in your server list
-- \***\*World Selection Screen\*\***
+- **World Selection Screen**
   - _Searchbox is automatically selected when opening screen so you can start typing immidiately_
   - `Enter` to join the top-most world on the search list
-- \***\*Server Selection Screen\*\***
+- **Server Selection Screen**
   - `M` to join the first server in the server list
   - `A` to add new server
   - `D` to open the direct connect screen (not implemented yet)
   - `1-9` to join the corresponding server in the server list
-- \***\*Server Disconnect Screen\*\***
+- **Server Disconnect Screen**
   - `ESC` to return to Server Selection Screen
-- \***\*Creative Menu\*\***
+- **Creative Menu**
   - `Tab` to automatically switch to the search page and automatically select textbox
   - `Tab` when you have the textbox selected to clear it
 
-Im open to suggestions for more keybinds! You can join [my discord](<[https://discord.gg/SA9nmfMkdc](https://discord.gg/SA9nmfMkdc)>) or [open an issue](https://github.com/LukynkaCZE/ui-keybinds/issues) on github.
+Im open to [suggestions](https://github.com/artginzburg/ui-keybinds/issues) for more keybinds!
 
 ## Why can't I rebind these keys in controls?
 
@@ -38,10 +38,6 @@ You can code a ModMenu integration for user config — I'll accept PRs for that 
 
 ## Contributing
 
-If you found a bug or something doesn't work — please open an issue [here](https://github.com/LukynkaCZE/ui-keybinds/issues)
+If you are a developer wanting to contribute, or you've found a bug — please open an issue [here](https://github.com/artginzburg/ui-keybinds/issues)
 
-If you are developer and want to contribute, check out the [source code](https://github.com/LukynkaCZE/ui-keybinds/issues). Feel free to open pull requests!
-
-## Support
-
-If you like the mod, consider supporting me by [buying me a cofee](https://ko-fi.com/lukynkacze). You can also remind the author to move away from ko-fi, to avoid paying 5% in fees.
+Feel free to open Pull Requests!
