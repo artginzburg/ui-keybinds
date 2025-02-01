@@ -1,0 +1,15 @@
+{
+  "menu.singleplayer": "Singleplayer §7[§rS§7]",
+  "menu.multiplayer": "Multiplayer §7[§rM§7]",
+  "menu.returnToGame": "Resume §7[§rEsc§7]",
+  "menu.returnToMenu": "Save & §7[§rE§7]§rxit",
+  "menu.quit": "Quit §7[§r^Q§7]",
+  "menu.disconnect": "Disconnect §7[§rE§7]",
+  "selectServer.select": "§7[§rEnter§7]",
+  "selectServer.direct": "by IP",
+  "selectServer.add": "§7[§rA§7]§rdd",
+  "selectServer.refresh": "§7[§rR§7]§refresh",
+  "gui.back": "§7[§rEscape§7]",
+  "gui.done": "§7[§rEscape§7]",
+  "gui.cancel": "§7[§rEscape§7]"
+}
