@@ -31,6 +31,10 @@ There are currently the following keybinds:
 
 Im open to [suggestions](https://github.com/artginzburg/ui-keybinds/issues) for more keybinds!
 
+## Resource Pack
+
+This mod comes with a built-in resource pack that shows keybinds in the UI
+
 ## Why can't I rebind these keys in controls?
 
 This mod does not use the minecraft keybinding system, so as to prevent conflicts (ex. `S` to open world selection screen would block movement backwards).
