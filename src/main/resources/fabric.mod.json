@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "id": "uikeybinds",
   "version": "${version}",
-  "name": "UIKeybinds",
-  "description": "",
-  "authors": [],
+  "name": "UI Keybinds",
+  "description": "Adds keybinds to navigate the UI without a mouse",
+  "authors": ["LukynkaCZE", "artginzburg"],
   "contact": {
     "homepage": "https://modrinth.com/mod/ui-keybinds",
     "sources": "https://github.com/artginzburg/ui-keybinds",
