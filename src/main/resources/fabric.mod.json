@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "uikeybinds",
   "version": "${version}",
-  "name": "UIKeybinds",
+  "name": "UI Keybinds",
   "description": "Adds keybinds to navigate the UI without a mouse",
   "authors": ["LukynkaCZE", "artginzburg"],
   "contact": {
