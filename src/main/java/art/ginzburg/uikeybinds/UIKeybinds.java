@@ -26,7 +26,8 @@ public class UIKeybinds implements ModInitializer {
       new GameMenuScreenEscape(), // Pause Menu -> Selects the disconnect button with "E" (as Exit)
       new CreativeInventorySearch(), // Creative Inventory Menu -> Selects the search tab with "TAB". If search tab
                                      // is already selected, clears the search box value
-      new MultiplayerRefreshList() // Server List -> Refreshes the server list with "R"
+      new MultiplayerRefreshList(), // Server List -> Refreshes the server list with "R"
+      new CancelConnectScreen() // Connect Screen -> Cancels the connection with "ESC"
   );
 
   private final Set<Integer> pressedKeys = new HashSet<>();
