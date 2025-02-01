@@ -9,6 +9,6 @@
   "selectServer.add": "§7[§rA§7]§rdd",
   "selectServer.refresh": "§7[§rR§7]§refresh",
   "gui.back": "§7[§rEscape§7]",
-  "gui.done": "§7[§rEscape§7]",
+  // "gui.done": "§7[§rEscape§7]", // This is not correct. "Done" actually does not have a keybind, and Escape in most GUIs means "Cancel". While "Done" means Save.
   "gui.cancel": "§7[§rEscape§7]"
 }
