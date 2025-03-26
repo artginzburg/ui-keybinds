@@ -6,6 +6,7 @@ import cz.lukynka.betteruikeybinds.client.keybinds.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.MouseHandler;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.sounds.SoundEvents;
@@ -25,7 +26,8 @@ public class BetterUIKeybinds implements ModInitializer {
             new MultiplayerAddServer(), // Server List -> Jumps to Add new server screen with "A"
             new SelectWorldScreenEnterWorld(), // World Select -> Joins the selected world with "Enter" even when the selection is on SearchBox
             new GameMenuScreenEscape(), // Pause Menu -> Selects the disconnect button with "E" (as Exit)
-            new CreativeInventorySearch() // Creative Inventory Menu -> Selects the search tab with "TAB". If search tab is already selected, clears the search box value
+            new CreativeInventorySearch(), // Creative Inventory Menu -> Selects the search tab with "TAB". If search tab is already selected, clears the search box value
+            new MultiplayerDisconnectScreenReconnect() // Disconnect screen -> reconnect
     );
 
     private final Set<Integer> pressedKeys = new HashSet<>();

@@ -24,11 +24,14 @@ There are currently the following keybinds:
   - `1-9` to join the corresponding server in the server list
 - **__Server Disconnect Screen__**
   - `ESC` to return to Server Selection Screen
+  - `R` to reconnect to the server
 - **__Creative Menu__**
   - `Tab` to automatically switch to the search page and automatically select textbox
   - `Tab` when you have the textbox selected to clear it
+- **__In-game__**
+  - `Left Alt + Scroll` to change FOV
 
-Im open to suggestions for more keybinds! You can join [my discord]([https://discord.gg/SA9nmfMkdc](https://discord.gg/SA9nmfMkdc)) or [open an issue](https://github.com/LukynkaCZE/better-ui-keybinds/issues) on github.
+I'm open to suggestions for more keybinds! You can join [my discord]([https://discord.gg/SA9nmfMkdc](https://discord.gg/SA9nmfMkdc)) or [open an issue](https://github.com/LukynkaCZE/better-ui-keybinds/issues) on github.
 
 ## Why can't I rebind these keys in controls?
 
