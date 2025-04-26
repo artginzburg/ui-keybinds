@@ -6,6 +6,7 @@ import art.ginzburg.uikeybinds.client.keybinds.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.sounds.SoundEvents;
 
@@ -26,6 +27,7 @@ public class UIKeybinds implements ModInitializer {
       new GameMenuScreenEscape(), // Pause Menu -> Selects the disconnect button with "E" (as Exit)
       new CreativeInventorySearch(), // Creative Inventory Menu -> Selects the search tab with "TAB". If search tab
                                      // is already selected, clears the search box value
+      new MultiplayerDisconnectScreenReconnect(), // Disconnect screen -> reconnect
       new MultiplayerRefreshList(), // Server List -> Refreshes the server list with "R"
       new CancelConnectScreen() // Connect Screen -> Cancels the connection with "ESC"
   );
@@ -61,7 +63,13 @@ public class UIKeybinds implements ModInitializer {
     for (Keybind keybind : keybindList) {
       if (keybind.getKeybinds().contains(key)) {
         assert client.screen != null;
-        if (keybind.getScreen() == client.screen.getClass()) {
+
+        // "kennytvs-epic-force-close-loading-screen-mod-for-fabric" overrides the main
+        // menu screen to open custom TitleBridgeScreen class.
+        boolean isKennyTvsMod = keybind.getScreen() == TitleScreen.class
+            && client.screen.getClass().getSimpleName().equals("TitleBridgeScreen");
+
+        if (keybind.getScreen() == client.screen.getClass() || isKennyTvsMod) {
           keybind.handle(key);
           assert Minecraft.getInstance().screen != null;
           Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.NOTE_BLOCK_HAT, 1.3f));

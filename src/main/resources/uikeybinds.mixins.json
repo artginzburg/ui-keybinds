@@ -4,7 +4,12 @@
   "package": "art.ginzburg.uikeybinds.client.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": ["CreativeModeTabsMixin"],
-  "client": ["CreativeModeInventoryAccessor", "SelectWorldScreenMixin"],
+  "client": [
+    "ConnectScreenMixin",
+    "CreativeModeInventoryAccessor",
+    "DisconnectScreenAccessor",
+    "SelectWorldScreenMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
