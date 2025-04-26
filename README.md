@@ -25,6 +25,7 @@ There are currently the following keybinds:
   - `1-9` to join the corresponding server in the server list
 - **Server Disconnect Screen**
   - `ESC` to return to Server Selection Screen
+  - `R` to reconnect to the server
 - **Creative Menu**
   - `Tab` to automatically switch to the search page and automatically select textbox
   - `Tab` when you have the textbox selected to clear it
@@ -42,6 +43,8 @@ This mod does not use the minecraft keybinding system, so as to prevent conflict
 You can code a ModMenu integration for user config — I'll accept PRs for that as soon as possible.
 
 ## Contributing
+
+I'm open to suggestions for more keybinds!
 
 If you are a developer wanting to contribute, or you've found a bug — please open an issue [here](https://github.com/artginzburg/ui-keybinds/issues)
 
