@@ -1,5 +1,3 @@
-# UI Keybinds
-
 The killer feature is the ability to use the UI with keyboard only, with no pain.
 
 E.g. `MM` on Title Screen joins the first server in your multiplayer list.
