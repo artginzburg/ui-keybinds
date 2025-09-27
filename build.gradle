@@ -10,6 +10,22 @@ base {
     archivesName = project.archives_base_name
 }
 
+// Define version configurations
+def minecraftVersions = [
+    'mc1213': [
+        minecraft: '1.21.3',
+        fabric: '0.114.0+1.21.3',
+        range: '1.21.3-1.21.5',
+        minecraftRange: '>=1.21.3 <=1.21.5'
+    ],
+    'mc1216': [
+        minecraft: '1.21.6',
+        fabric: '0.133.4+1.21.8',
+        range: '1.21.6-1.21.8',
+        minecraftRange: '~1.21.6'
+    ]
+]
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.officialMojangMappings()
@@ -21,12 +37,14 @@ processResources {
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
+    inputs.property "minecraft_range", project.findProperty("minecraft_range") ?: "~${project.minecraft_version}"
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
-                "loader_version": project.loader_version
+                "loader_version": project.loader_version,
+                "minecraft_range": project.findProperty("minecraft_range") ?: "~${project.minecraft_version}"
     }
 }
 
@@ -44,6 +62,95 @@ java {
         toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     }
     withSourcesJar()
+}
+
+// Create tasks that build for specific Minecraft versions
+minecraftVersions.each { key, config ->
+    // WARN: these individual tasks haven't been tested.
+
+    // Task to build for a specific Minecraft version
+    tasks.register("build${key.capitalize()}") {
+        description = "Build for Minecraft ${config.range}"
+        group = "build"
+
+        doLast {
+            // Build with the specific Minecraft version
+            exec {
+                commandLine './gradlew', 'clean', 'jar',
+                    "-Pminecraft_version=${config.minecraft}",
+                    "-Pfabric_version=${config.fabric}"
+            }
+
+            // Copy and rename the resulting JAR
+            copy {
+                from "build/libs/UIKeybinds-${version}.jar"
+                into "build/libs"
+                rename { "UIKeybinds-${version}-${config.range}.jar" }
+            }
+
+            // Remove the original JAR to avoid confusion
+            delete "build/libs/UIKeybinds-${version}.jar"
+        }
+    }
+}
+
+// Create a task that builds all versions
+tasks.register("buildAllVersions") {
+    description = "Build all Minecraft version variants"
+    group = "build"
+
+    doLast {
+        // Clean first
+        exec {
+            commandLine './gradlew', 'clean'
+        }
+
+        // Create temporary directory for storing JARs
+        mkdir 'build/temp_jars'
+
+        // Build each version
+        minecraftVersions.each { key, config ->
+            println "Building for Minecraft ${config.range}..."
+
+            exec {
+                commandLine './gradlew', 'remapJar', 'remapSourcesJar',
+                    "-Pminecraft_version=${config.minecraft}",
+                    "-Pfabric_version=${config.fabric}",
+                    "-Pminecraft_range=${config.minecraftRange}"
+            }
+
+            // Copy the main JAR to temp directory with version classifier
+            copy {
+                from "build/libs/UIKeybinds-${version}.jar"
+                into "build/temp_jars"
+                rename { "UIKeybinds-${version}-${config.range}.jar" }
+            }
+
+            // Copy the sources JAR to temp directory with version classifier
+            copy {
+                from "build/libs/UIKeybinds-${version}-sources.jar"
+                into "build/temp_jars"
+                rename { "UIKeybinds-${version}-${config.range}-sources.jar" }
+            }
+
+            // Clean for next build (but preserve temp_jars)
+            delete fileTree('build/libs') { include '*.jar' }
+        }
+
+        // Move all JARs back to libs directory
+        copy {
+            from 'build/temp_jars'
+            into 'build/libs'
+        }
+
+        // Clean up temp directory
+        delete 'build/temp_jars'
+    }
+}
+
+// Override the build task to use buildAllVersions
+build {
+    dependsOn buildAllVersions
 }
 
 jar {

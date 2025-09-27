@@ -11,7 +11,7 @@
     "issues": "https://github.com/artginzburg/ui-keybinds/issues"
   },
   "license": "MIT",
-  "icon": "assets/uikeybinds/icon.png",
+  "icon": "resourcepacks/uikeybinds/pack.png",
   "environment": "client",
   "entrypoints": {
     "client": ["art.ginzburg.uikeybinds.client.UIKeybindsClient"],
@@ -21,6 +21,6 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "~${minecraft_version}"
+    "minecraft": "${minecraft_range}"
   }
 }
