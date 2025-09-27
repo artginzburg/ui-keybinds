@@ -66,30 +66,43 @@ java {
 
 // Create tasks that build for specific Minecraft versions
 minecraftVersions.each { key, config ->
-    // WARN: these individual tasks haven't been tested.
-
     // Task to build for a specific Minecraft version
     tasks.register("build${key.capitalize()}") {
         description = "Build for Minecraft ${config.range}"
         group = "build"
 
         doLast {
-            // Build with the specific Minecraft version
+            println "Building for Minecraft ${config.range}..."
+
+            // Clean first
             exec {
-                commandLine './gradlew', 'clean', 'jar',
-                    "-Pminecraft_version=${config.minecraft}",
-                    "-Pfabric_version=${config.fabric}"
+                commandLine './gradlew', 'clean'
             }
 
-            // Copy and rename the resulting JAR
+            // Build with the specific Minecraft version (same as buildAllVersions)
+            exec {
+                commandLine './gradlew', 'remapJar', 'remapSourcesJar',
+                    "-Pminecraft_version=${config.minecraft}",
+                    "-Pfabric_version=${config.fabric}",
+                    "-Pminecraft_range=${config.minecraftRange}"
+            }
+
+            // Rename the resulting JARs to include version range
             copy {
                 from "build/libs/UIKeybinds-${version}.jar"
                 into "build/libs"
                 rename { "UIKeybinds-${version}-${config.range}.jar" }
             }
 
-            // Remove the original JAR to avoid confusion
+            copy {
+                from "build/libs/UIKeybinds-${version}-sources.jar"
+                into "build/libs"
+                rename { "UIKeybinds-${version}-${config.range}-sources.jar" }
+            }
+
+            // Remove the original JARs to avoid confusion
             delete "build/libs/UIKeybinds-${version}.jar"
+            delete "build/libs/UIKeybinds-${version}-sources.jar"
         }
     }
 }
