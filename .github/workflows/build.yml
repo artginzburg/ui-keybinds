@@ -61,3 +61,13 @@ jobs:
         with:
           modrinth-id: PqDbGlPm
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+      - name: build for 1.21.9
+        run: ./gradlew buildMc1219
+        if: github.ref == 'refs/heads/main'
+
+      - uses: Kir-Antipov/mc-publish@v3.3
+        if: github.ref == 'refs/heads/main'
+        with:
+          modrinth-id: PqDbGlPm
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}

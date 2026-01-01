@@ -6,6 +6,8 @@ import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.client.gui.screens.multiplayer.ServerSelectionList;
 import org.lwjgl.glfw.GLFW;
 
+import art.ginzburg.uikeybinds.client.util.JoinMultiplayerScreenHelper;
+
 import java.util.List;
 import java.util.Map;
 
@@ -53,8 +55,7 @@ public class MultiplayerListJump implements Keybind {
       for (GuiEventListener child : screen.children()) {
         if (child.getClass() == ServerSelectionList.class) {
           var entry = ((ServerSelectionList) child).children().get(keyMap.get(key) - 1);
-          screen.setSelected(entry);
-          screen.joinSelectedServer();
+          JoinMultiplayerScreenHelper.joinServer(screen, entry);
           return;
         }
       }

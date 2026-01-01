@@ -1,8 +1,7 @@
 package art.ginzburg.uikeybinds;
 
-import com.mojang.blaze3d.platform.InputConstants;
-
 import art.ginzburg.uikeybinds.client.keybinds.*;
+import art.ginzburg.uikeybinds.client.util.WindowHelper;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;
@@ -40,11 +39,11 @@ public class UIKeybinds implements ModInitializer {
   }
 
   private void onClientTick(Minecraft client) {
-    long windowHandle = Minecraft.getInstance().getWindow().getWindow();
+    Object windowContext = WindowHelper.getWindowContext();
 
     for (Keybind keybind : keybindList) {
       for (Integer key : keybind.getKeybinds()) {
-        if (InputConstants.isKeyDown(windowHandle, key)) {
+        if (WindowHelper.isKeyDown(windowContext, key)) {
           if (!pressedKeys.contains(key)) {
             pressedKeys.add(key);
             onKeyPress(client, key);

@@ -1,5 +1,6 @@
 package art.ginzburg.uikeybinds.client.keybinds;
 
+import art.ginzburg.uikeybinds.client.util.ButtonHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.events.GuiEventListener;
@@ -40,7 +41,7 @@ public class MultiplayerJump implements Keybind {
         return;
       var button = (Button) child;
       if (button.getMessage().contains(Component.translatable("menu.multiplayer"))) {
-        button.onPress();
+        ButtonHelper.press(button);
       }
     }
   }

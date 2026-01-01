@@ -1,5 +1,6 @@
 package art.ginzburg.uikeybinds.client.keybinds;
 
+import art.ginzburg.uikeybinds.client.util.ButtonHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.events.GuiEventListener;
@@ -38,7 +39,7 @@ public class MultiplayerRefreshList implements Keybind {
       if (child.getClass() == Button.class) {
         var button = (Button) child;
         if (button.getMessage().contains(Component.translatable("selectServer.refresh"))) {
-          button.onPress();
+          ButtonHelper.press(button);
         }
       }
     }
