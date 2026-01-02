@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.11.7'
+    id 'fabric-loom' version "${loom_version}"
     id 'maven-publish'
 }
 
@@ -39,7 +39,7 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
 // Dynamically configure source sets based on build properties
@@ -57,16 +57,14 @@ if (versionSourceSet in ['mc1213', 'mc1219']) {
 
 processResources {
     inputs.property "version", project.version
-    inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
     inputs.property "minecraft_range", project.findProperty("minecraft_range") ?: "~${project.minecraft_version}"
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version,
-                "minecraft_version": project.minecraft_version,
-                "loader_version": project.loader_version,
-                "minecraft_range": project.findProperty("minecraft_range") ?: "~${project.minecraft_version}"
+        expand  "version": inputs.properties.version,
+                "loader_version": inputs.properties.loader_version,
+                "minecraft_range": inputs.properties.minecraft_range
     }
 }
 
@@ -105,7 +103,7 @@ minecraftVersions.each { key, config ->
             exec {
                 commandLine './gradlew', 'remapJar', 'remapSourcesJar',
                     "-Pminecraft_version=${config.minecraft}",
-                    "-Pfabric_version=${config.fabric}",
+                    "-Pfabric_api_version=${config.fabric}",
                     "-Pminecraft_range=${config.minecraftRange}",
                     "-Pversion_source_set=${config.sourceSet}"
             }
@@ -151,7 +149,7 @@ tasks.register("buildAllVersions") {
             exec {
                 commandLine './gradlew', 'remapJar', 'remapSourcesJar',
                     "-Pminecraft_version=${config.minecraft}",
-                    "-Pfabric_version=${config.fabric}",
+                    "-Pfabric_api_version=${config.fabric}",
                     "-Pminecraft_range=${config.minecraftRange}",
                     "-Pversion_source_set=${config.sourceSet}"
             }
