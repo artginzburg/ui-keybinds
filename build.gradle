@@ -21,7 +21,7 @@ def minecraftVersions = [
     ],
     'mc1216': [
         minecraft: '1.21.6',
-        fabric: '0.133.4+1.21.8',
+        fabric: '0.128.2+1.21.6',
         range: '1.21.6-1.21.8',
         minecraftRange: '>=1.21.6 <=1.21.8',
         sourceSet: 'mc1213'
@@ -43,7 +43,7 @@ dependencies {
 }
 
 // Dynamically configure source sets based on build properties
-def versionSourceSet = project.findProperty('version_source_set') ?: 'mc1213'
+def versionSourceSet = project.findProperty('version_source_set') ?: 'mc1219'
 
 if (versionSourceSet in ['mc1213', 'mc1219']) {
     sourceSets.main {
