@@ -33,41 +33,13 @@ jobs:
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
 
-      - name: build for all versions
+      - name: build
         run: ./gradlew build
 
-      - name: publish on GitHub
-        uses: Kir-Antipov/mc-publish@v3.3
+      - uses: Kir-Antipov/mc-publish@v3.3
         if: github.ref == 'refs/heads/main'
         with:
+          modrinth-id: PqDbGlPm
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
           github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: build for 1.21.3
-        run: ./gradlew buildMc1213
-        if: github.ref == 'refs/heads/main'
-
-      - uses: Kir-Antipov/mc-publish@v3.3
-        if: github.ref == 'refs/heads/main'
-        with:
-          modrinth-id: PqDbGlPm
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-
-      - name: build for 1.21.6
-        run: ./gradlew buildMc1216
-        if: github.ref == 'refs/heads/main'
-
-      - uses: Kir-Antipov/mc-publish@v3.3
-        if: github.ref == 'refs/heads/main'
-        with:
-          modrinth-id: PqDbGlPm
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-
-      - name: build for 1.21.9
-        run: ./gradlew buildMc1219
-        if: github.ref == 'refs/heads/main'
-
-      - uses: Kir-Antipov/mc-publish@v3.3
-        if: github.ref == 'refs/heads/main'
-        with:
-          modrinth-id: PqDbGlPm
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}

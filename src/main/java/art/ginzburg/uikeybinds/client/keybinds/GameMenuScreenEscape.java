@@ -1,12 +1,10 @@
 package art.ginzburg.uikeybinds.client.keybinds;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.PauseScreen;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
+import art.ginzburg.uikeybinds.client.util.ButtonHelper;
 import java.util.List;
 
 public class GameMenuScreenEscape implements Keybind {
@@ -32,16 +30,15 @@ public class GameMenuScreenEscape implements Keybind {
 
   @Override
   public void handle(Integer key) {
-    var screen = (PauseScreen) Minecraft.getInstance().screen;
-    assert screen != null;
-    for (GuiEventListener child : screen.children()) {
-      if (child.getClass() == Button.class) {
-        var button = (Button) child;
-        if (button.getMessage().contains(Component.translatable("menu.returnToMenu"))
-            || button.getMessage().contains(Component.translatable("menu.disconnect"))) {
-          screen.setFocused(button);
-        }
+    var translatable1 = Component.translatable("menu.returnToMenu");
+    var translatable2 = Component.translatable("menu.disconnect");
+
+    ButtonHelper.loopThroughButtonsOnScreen((button, screen) -> {
+      var buttonMessage = button.getMessage();
+      if (buttonMessage.contains(translatable1)
+          || buttonMessage.contains(translatable2)) {
+        screen.setFocused(button);
       }
-    }
+    });
   }
 }

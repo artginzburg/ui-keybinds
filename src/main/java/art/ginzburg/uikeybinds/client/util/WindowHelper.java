@@ -3,6 +3,7 @@ package art.ginzburg.uikeybinds.client.util;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.platform.Window;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 
 /**
  * Version-specific helper for window/input handling.
@@ -28,5 +29,11 @@ public class WindowHelper {
    */
   public static boolean isKeyDown(Object windowContext, Integer key) {
     return InputConstants.isKeyDown((Window) windowContext, key);
+  }
+
+  public static Screen getCurrentScreen() {
+    var screen = Minecraft.getInstance().screen;
+    assert screen != null;
+    return screen;
   }
 }

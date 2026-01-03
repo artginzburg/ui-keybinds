@@ -1,7 +1,0 @@
-{
-  "pack": {
-    "pack_format": 15,
-    "description": "Shows keybinds in the UI",
-    "supported_formats": [15, 64]
-  }
-}

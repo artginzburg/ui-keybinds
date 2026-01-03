@@ -51,15 +51,15 @@ public class MultiplayerListJump implements Keybind {
     var screen = (JoinMultiplayerScreen) Minecraft.getInstance().screen;
     assert screen != null;
     try {
-      var server = screen.getServers().get(keyMap.get(key) - 1);
+      // var server = screen.getServers().get(keyMap.get(key) - 1);
       for (GuiEventListener child : screen.children()) {
-        if (child.getClass() == ServerSelectionList.class) {
+        if (child instanceof ServerSelectionList) {
           var entry = ((ServerSelectionList) child).children().get(keyMap.get(key) - 1);
           JoinMultiplayerScreenHelper.joinServer(screen, entry);
           return;
         }
       }
-      System.out.println(server.ip);
+      // System.out.println(server.ip);
     } catch (Exception ex) {
       // ignore
     }

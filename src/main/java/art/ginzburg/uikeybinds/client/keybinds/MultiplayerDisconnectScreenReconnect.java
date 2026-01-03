@@ -9,6 +9,8 @@ import net.minecraft.client.multiplayer.resolver.ServerAddress;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
+import art.ginzburg.uikeybinds.client.util.WindowHelper;
+
 import java.util.List;
 
 public class MultiplayerDisconnectScreenReconnect implements Keybind {
@@ -38,8 +40,7 @@ public class MultiplayerDisconnectScreenReconnect implements Keybind {
 
   @Override
   public void handle(Integer key) {
-    var screen = (DisconnectedScreen) Minecraft.getInstance().screen;
-    assert screen != null;
+    var screen = WindowHelper.getCurrentScreen();
     if (lastConnectedServerData != null) {
       ConnectScreen.startConnecting(screen, Minecraft.getInstance(),
           ServerAddress.parseString(lastConnectedServerData.ip), lastConnectedServerData, false, (TransferState) null);

@@ -1,11 +1,7 @@
 package art.ginzburg.uikeybinds.client.keybinds;
 
 import art.ginzburg.uikeybinds.client.util.ButtonHelper;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.ConnectScreen;
-import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
@@ -33,15 +29,6 @@ public class CancelConnectScreen implements Keybind {
 
   @Override
   public void handle(Integer key) {
-    var screen = (ConnectScreen) Minecraft.getInstance().screen;
-    assert screen != null;
-    for (GuiEventListener child : screen.children()) {
-      if (child.getClass() == Button.class) {
-        var button = (Button) child;
-        if (button.getMessage().contains(Component.translatable("gui.cancel"))) {
-          ButtonHelper.press(button);
-        }
-      }
-    }
+    ButtonHelper.pressButtonOnScreen("gui.cancel");
   }
 }

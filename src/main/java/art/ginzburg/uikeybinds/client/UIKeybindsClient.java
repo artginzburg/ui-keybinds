@@ -1,11 +1,11 @@
 package art.ginzburg.uikeybinds.client;
 
+import art.ginzburg.uikeybinds.client.util.IdentifierHelper;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
+import net.fabricmc.fabric.api.resource.v1.pack.PackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 
 public class UIKeybindsClient implements ClientModInitializer {
   public static final String ID = "uikeybinds";
@@ -13,9 +13,9 @@ public class UIKeybindsClient implements ClientModInitializer {
   @Override
   public void onInitializeClient() {
     FabricLoader.getInstance().getModContainer(ID).ifPresent(modContainer -> {
-      ResourceManagerHelper.registerBuiltinResourcePack(ResourceLocation.parse("uikeybinds"), modContainer,
+      ResourceLoader.registerBuiltinPack(IdentifierHelper.parse("uikeybinds"), modContainer,
           Component.literal("UI Keybinds"),
-          ResourcePackActivationType.DEFAULT_ENABLED);
+          PackActivationType.DEFAULT_ENABLED);
     });
   }
 }

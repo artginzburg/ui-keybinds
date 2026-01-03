@@ -10,31 +10,6 @@ base {
     archivesName = project.archives_base_name
 }
 
-// Define version configurations
-def minecraftVersions = [
-    'mc1213': [
-        minecraft: '1.21.3',
-        fabric: '0.114.0+1.21.3',
-        range: '1.21.3-1.21.5',
-        minecraftRange: '>=1.21.3 <=1.21.5',
-        sourceSet: 'mc1213'
-    ],
-    'mc1216': [
-        minecraft: '1.21.6',
-        fabric: '0.128.2+1.21.6',
-        range: '1.21.6-1.21.8',
-        minecraftRange: '>=1.21.6 <=1.21.8',
-        sourceSet: 'mc1213'
-    ],
-    'mc1219': [
-        minecraft: '1.21.9',
-        fabric: '0.134.1+1.21.9',
-        range: '1.21.9-1.21.10',
-        minecraftRange: '~1.21.9',
-        sourceSet: 'mc1219'
-    ]
-]
-
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.officialMojangMappings()
@@ -42,28 +17,10 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
-// Dynamically configure source sets based on build properties
-def versionSourceSet = project.findProperty('version_source_set') ?: 'mc1219'
-
-if (versionSourceSet in ['mc1213', 'mc1219']) {
-    sourceSets.main {
-        java {
-            srcDir "src/${versionSourceSet}/java"
-        }
-        resources {
-            srcDir "src/${versionSourceSet}/resources"
-        }
-    }
-
-    println "Using source set: ${versionSourceSet}"
-}
-
 processResources {
     inputs.property "version", project.version
     inputs.property "loader_version", project.loader_version
-    inputs.property "minecraft_range", project.findProperty("minecraft_range") ?: "~${project.minecraft_version}"
-    filteringCharset "UTF-8"
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    inputs.property "minecraft_range", project.minecraft_range ?: "~${project.minecraft_version}"
 
     filesMatching("fabric.mod.json") {
         expand  "version": inputs.properties.version,
@@ -72,141 +29,30 @@ processResources {
     }
 }
 
-def targetJavaVersion = 21
 tasks.withType(JavaCompile).configureEach {
-    it.options.encoding = "UTF-8"
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        it.options.release.set(targetJavaVersion)
-    }
+	it.options.release = 21
 }
 
 java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    }
-    withSourcesJar()
-}
+	withSourcesJar()
 
-tasks.withType(Jar).configureEach {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
-}
-
-// Create tasks that build for specific Minecraft versions
-minecraftVersions.each { key, config ->
-    // Task to build for a specific Minecraft version
-    tasks.register("build${key.capitalize()}") {
-        description = "Build for Minecraft ${config.range}"
-        group = "build"
-
-        doLast {
-            println "Building for Minecraft ${config.range}..."
-
-            // Clean first
-            exec {
-                commandLine './gradlew', 'clean'
-            }
-
-            // Build with the specific Minecraft version (same as buildAllVersions)
-            exec {
-                commandLine './gradlew', 'remapJar', 'remapSourcesJar',
-                    "-Pminecraft_version=${config.minecraft}",
-                    "-Pfabric_api_version=${config.fabric}",
-                    "-Pminecraft_range=${config.minecraftRange}",
-                    "-Pversion_source_set=${config.sourceSet}"
-            }
-
-            // Rename the resulting JARs to include version range
-            copy {
-                from "build/libs/UIKeybinds-${version}.jar"
-                into "build/libs"
-                rename { "UIKeybinds-${version}-${config.range}.jar" }
-            }
-
-            copy {
-                from "build/libs/UIKeybinds-${version}-sources.jar"
-                into "build/libs"
-                rename { "UIKeybinds-${version}-${config.range}-sources.jar" }
-            }
-
-            // Remove the original JARs to avoid confusion
-            delete "build/libs/UIKeybinds-${version}.jar"
-            delete "build/libs/UIKeybinds-${version}-sources.jar"
-        }
-    }
-}
-
-// Create a task that builds all versions
-tasks.register("buildAllVersions") {
-    description = "Build all Minecraft version variants"
-    group = "build"
-
-    doLast {
-        // Clean first
-        exec {
-            commandLine './gradlew', 'clean'
-        }
-
-        // Create temporary directory for storing JARs
-        mkdir 'build/temp_jars'
-
-        // Build each version
-        minecraftVersions.each { key, config ->
-            println "Building for Minecraft ${config.range}..."
-
-            exec {
-                commandLine './gradlew', 'remapJar', 'remapSourcesJar',
-                    "-Pminecraft_version=${config.minecraft}",
-                    "-Pfabric_api_version=${config.fabric}",
-                    "-Pminecraft_range=${config.minecraftRange}",
-                    "-Pversion_source_set=${config.sourceSet}"
-            }
-
-            // Copy the main JAR to temp directory with version classifier
-            copy {
-                from "build/libs/UIKeybinds-${version}.jar"
-                into "build/temp_jars"
-                rename { "UIKeybinds-${version}-${config.range}.jar" }
-            }
-
-            // Copy the sources JAR to temp directory with version classifier
-            copy {
-                from "build/libs/UIKeybinds-${version}-sources.jar"
-                into "build/temp_jars"
-                rename { "UIKeybinds-${version}-${config.range}-sources.jar" }
-            }
-
-            // Clean for next build (but preserve temp_jars)
-            delete fileTree('build/libs') { include '*.jar' }
-        }
-
-        // Move all JARs back to libs directory
-        copy {
-            from 'build/temp_jars'
-            into 'build/libs'
-        }
-
-        // Clean up temp directory
-        delete 'build/temp_jars'
-    }
-}
-
-// Override the build task to use buildAllVersions
-build {
-    dependsOn buildAllVersions
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}"}
-    }
+	inputs.property "archivesName", project.base.archivesName
+
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.archivesName}"}
+	}
 }
 
 publishing {
-    publications {
-        create("mavenJava", MavenPublication) {
-            artifactId = project.archives_base_name
-            from components.java
-        }
-    }
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
 }
